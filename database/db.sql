@@ -1,0 +1,4 @@
+-- Active: 1760942016873@@localhost@5432@k3_exam
+CREATE DATABASE k3_exam;
+
+GRANT ALL PRIVILEGES ON DATABASE k3_exam TO k2_exam_user;
