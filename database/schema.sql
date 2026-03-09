@@ -22,6 +22,7 @@ CREATE TABLE Vente(
     CONSTRAINT fk_piece_auto FOREIGN KEY (id_piece_auto) REFERENCES Piece_auto(id)
 );
 
+
 SELECT m.marque, m.modele, COUNT(p.id) as total_piece_auto FROM modele_voiture m left join piece_auto p on p.id_modele_voiture = m.id GROUP BY m.marque, m.modele;
 
 SELECT 

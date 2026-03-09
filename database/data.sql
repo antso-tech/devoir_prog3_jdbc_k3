@@ -15,7 +15,7 @@ INSERT INTO Piece_auto (id_modele_voiture, numero_serie) VALUES
 (3, 'HYU-SPO-2024-003'),
 (3, 'HYU-SPO-2024-004'),
 (4, 'HYU-WIN-2024-001'),
-(4, 'HYU-WIN-2024-002'),
+(4, 'HYU-WIN-2024-002');
 
 INSERT INTO Vente (id_piece_auto, quantite, date) VALUES
 (1, 5.00, '2024-01-15'),
@@ -29,9 +29,10 @@ INSERT INTO Vente (id_piece_auto, quantite, date) VALUES
 (9, 3.00, '2024-03-05'),
 (10, 12.50, '2024-03-10'),
 (11, 9.00, '2024-03-15'),
-(12, 5.50, '2024-03-20'),
 (1, 3.00, '2024-04-05'),
 (3, 4.50, '2024-04-10'),
 (6, 8.00, '2024-04-15'),
-(9, 2.25, '2024-04-20'),
-(12, 6.00, '2024-04-25')
+(9, 2.25, '2024-04-20')
+
+
+
