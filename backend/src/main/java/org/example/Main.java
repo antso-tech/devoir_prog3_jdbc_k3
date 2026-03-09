@@ -8,5 +8,6 @@ public class Main {
         dbConnection.getConnection();
         DataRetriever data = new DataRetriever();
         System.out.println(data.findTotalSelledPieces());
+        System.out.println(data.findNumberOfSelledPiecesByBrand());
     }
 }
