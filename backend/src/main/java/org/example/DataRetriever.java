@@ -69,5 +69,39 @@ public class DataRetriever {
         }
     }
 
+    public List<PurcentageOfTotalPiecesByBrand> findPurcentageOfTotalPiecesByBrand(){
+        DBConnection dbConnection = new DBConnection();
 
+        String findPurcentageOfTotalPiecesByBrandSQL = """
+                SELECT
+                m.marque,
+                (COUNT(v.id) * 100 / (SELECT COUNT(id) from vente)) as pourcentage
+                FROM modele_voiture m
+                LEFT JOIN piece_auto p
+                ON m.id = p.id_modele_voiture
+                LEFT JOIN vente v
+                ON v.id_piece_auto = p.id
+                GROUP BY m.marque
+                """;
+
+        try (Connection connection = dbConnection.getConnection()){
+            PreparedStatement ps = connection.prepareStatement(findPurcentageOfTotalPiecesByBrandSQL);
+            ResultSet rs = ps.executeQuery();
+            List<PurcentageOfTotalPiecesByBrand> purcentageOfTotalPiecesByBrandList = new ArrayList<>();
+
+            while (rs.next()){
+                Brand brand = Brand.valueOf(rs.getString("marque"));
+                int pourcentageTotal = rs.getInt("pourcentage");
+                PurcentageOfTotalPiecesByBrand purcentageOfTotalPiecesByBrand = new PurcentageOfTotalPiecesByBrand();
+
+                purcentageOfTotalPiecesByBrand.setCarBrand(brand);
+                purcentageOfTotalPiecesByBrand.setPurcentageOfTotalPieces(pourcentageTotal);
+                purcentageOfTotalPiecesByBrandList.add(purcentageOfTotalPiecesByBrand);
+            }
+            return purcentageOfTotalPiecesByBrandList;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
